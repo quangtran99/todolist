@@ -6,14 +6,11 @@ const addTodo = () => {
 
   let itemTodo = { contents: todo, complete: false };
   console.log(todoList)
-
-  // if (document.getElementById("todoInput").value = "") {
-  //   return  ;
-  // } else {
+    if (todo !== ""){
     todoList.push(itemTodo);
     render(mode);
     document.getElementById("todoInput").value = "";
-  // }
+   }
 
 
 };
@@ -82,3 +79,15 @@ function numberOfTask () {
 
 numberOfTask ()
 render (mode);
+
+
+function setupListeners() {
+  const node = document.getElementById("todoInput");
+  node.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      addTodo();
+    }
+  });
+}
+
+setupListeners()
