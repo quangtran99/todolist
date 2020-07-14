@@ -10,6 +10,7 @@ const addTodo = () => {
     todoList.push(itemTodo);
     render(mode);
     document.getElementById("todoInput").value = "";
+    numberOfTask ()
    }
 
 
