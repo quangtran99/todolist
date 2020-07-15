@@ -15,15 +15,15 @@
     <button onclick="addTodo()">Add</button>
     <div class="row">
         <button id="showallbutton" type="button" class="btn btn-sm active "
-          onclick="handleChangeMode('all'), activeButton('showallbutton')">
+          onclick="allButton()">
           All<span id="showallbadge" class="badge badge-light ml-2">0</span>
         </button>
-        <button id="showundonebutton" type="button" class="btn btn-sm "
-          onclick="handleChangeMode('undone'), activeButton('showundonebutton')">
+        <button id="showundonebutton" type="button" class="btn btn-sm active "
+          onclick="undoneButton()">
           Undone<span id="showundonebadge" class="badge badge-light ml-2">0</span>
         </button>
-        <button id="showdonebutton" type="button" class="btn btn-sm "
-          onclick="handleChangeMode('done'), activeButton('showdonebutton')">
+        <button id="showdonebutton" type="button" class="btn btn-sm active "
+          onclick="doneButton()">
           Done<span id="showdonebadge" class="badge badge-light ml-2">0</span>
         </button>
       </div>

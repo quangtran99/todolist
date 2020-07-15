@@ -1,5 +1,5 @@
 let todoList = [];
-let mode = "all";
+
 
 const addTodo = () => {
   let todo = document.getElementById("todoInput").value;
@@ -8,7 +8,7 @@ const addTodo = () => {
   console.log(todoList)
     if (todo !== ""){
     todoList.push(itemTodo);
-    render(mode);
+    render(todoList);
     document.getElementById("todoInput").value = "";
     numberOfTask ()
    }
@@ -20,27 +20,27 @@ const toggleDone = (index) => {
   todoList[index].complete = true;
   console.log(todoList);
   numberOfTask ();
-  render(mode);}
+  render(todoList);}
 
 
 const toggleUndone = (index) => {
   todoList[index].complete = false;
   console.log(todoList);
   numberOfTask ();
-  render(mode);}
+  render(todoList);}
 
 function toggleRemove(index) {
   todoList.splice(index,1);
   console.log(todoList);
   numberOfTask ();
-  render(mode);
+  render(todoList);
 }
 
 
-const render = (mode) => {
+const render = (array) => {
 
 
-  let todoHTML = todoList
+  let todoHTML = array
     .map((item, index) => {
       if (item.complete == false) {
         return `<li class="item-style">${item.contents} <a onclick="toggleDone(${index})" href="#">Done</a> <a onclick="toggleRemove(${index})" href="#">Remove</a></li>`;
@@ -54,21 +54,24 @@ const render = (mode) => {
 };
 
 
-function handleChangeMode (newmode) {
-  mode = newmode;
-  render(mode);
+
+function allButton() {
+  render(todoList);
+} 
+
+function doneButton() {
+   let filteredList = todoList.filter(item => item.complete == true);
+   console.log(filteredList)
+   render(filteredList);
 }
 
-function activeButton (button) {
-  const listVariable = ["showundonebutton", "showallbutton", "showdonebutton"];
-  listVariable.map(variable => {
-    if (variable === button) {
-      document.getElementById(variable).classList.add("active");
-    } else {
-      document.getElementById(variable).classList.remove("active");
-    }
-  });
+function undoneButton() {
+  let filteredList = todoList.filter(item => item.complete == false);
+  console.log(filteredList)
+  render(filteredList);
 }
+
+
 
 function numberOfTask () {
   donelength = todoList.filter(itemTodo => itemTodo.complete === true ).length
@@ -78,8 +81,8 @@ function numberOfTask () {
   document.getElementById("showdonebadge").innerHTML = `${donelength}`;
 }
 
-numberOfTask ()
-render (mode);
+// numberOfTask ()
+// render ();
 
 
 function setupListeners() {
